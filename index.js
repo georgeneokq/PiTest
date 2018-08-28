@@ -1,6 +1,6 @@
 import Noble from 'noble';
 
-const RSSI_THRESHOLD = -90;
+const RSSI_THRESHOLD = -90; // RSSI = Signal Strength
 const EXIT_GRACE_PERIOD = 2000;
 
 const inRange = [];
