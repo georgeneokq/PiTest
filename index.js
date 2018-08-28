@@ -1,33 +1,16 @@
-import Noble from 'noble';
+import Bluetooth from 'node-bluetooth';
 
-const RSSI_THRESHOLD = -90; // RSSI = Signal Strength
-const EXIT_GRACE_PERIOD = 2000;
+const Device = new Bluetooth.Device.INQ();
 
-const inRange = [];
+const Found = [];
 
-Noble.on('stateChange', (state) => {
-  if (state === 'poweredOn') {
-    Noble.startScanning([], true);
-  } else {
-    Noble.stopScanning();
-  }
-});
+Device.on('finished', () => {
+  console.log(Found);
+}).on('found', (address, name) => {
+  Found.push({
+    address,
+    name,
+  });
 
-Noble.on('discover', (peripheral) => {
-  if (peripheral.rssi < RSSI_THRESHOLD) {
-    return;
-  }
-
-  // Check if it's already in the list.
-  if (!inRange[peripheral.id]) {
-    // Add it to the list.
-    inRange[peripheral.id] = {
-      peripheral,
-    };
-
-    console.log(`${peripheral.advertisement.localName} entered RSSI ${peripheral.rssi}`);
-    console.log(peripheral);
-  }
-
-  inRange[peripheral.id].lastSeen = Date.now();
-});
+  console.log(`Found: ${name} named ${name}`);
+}).inquire();
