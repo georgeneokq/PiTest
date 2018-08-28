@@ -1,6 +1,6 @@
 import Bluetooth from 'node-bluetooth';
 
-const Device = new Bluetooth.Device.INQ();
+const Device = new Bluetooth.DeviceINQ();
 
 const Found = [];
 
