@@ -1,2 +1,2 @@
 ## Prerequisites
-`sudo  apt-get install bluetooth bluez linbluetooth-dev libudev-dev arp-scan`
+`sudo  apt-get install bluetooth bluez libbluetooth-dev libudev-dev arp-scan`
