@@ -1,0 +1,32 @@
+{
+  "name": "pi_bt_experiment",
+  "version": "1.0.0",
+  "description": "Bluetooth experiment for the Raspberry Pi",
+  "main": "index.js",
+  "scripts": {
+    "babel-node": "babel-node --presets=airbnb",
+    "dev": "nodemon --exec npm run babel-node -- ./index.js",
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./,babelrc,./package.json,./package-lock.json,./eslintrc.json --copy-files"
+  },
+  "author": "jtPox",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-airbnb": "^2.5.3",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "nodemon": "^1.18.3",
+    "rimraf": "^2.6.2"
+  },
+  "babel": {
+    "presets": [
+      "airbnb"
+    ]
+  },
+  "dependencies": {
+    "local-network-scanner": "^0.2.0",
+    "noble": "^1.9.1"
+  }
+}
