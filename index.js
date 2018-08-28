@@ -12,5 +12,5 @@ Device.on('finished', () => {
     name,
   });
 
-  console.log(`Found: ${name} named ${name}`);
+  console.log(`Found: ${address} named ${name}`);
 }).inquire();
