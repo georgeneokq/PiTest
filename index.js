@@ -26,6 +26,7 @@ Noble.on('discover', (peripheral) => {
     };
 
     console.log(`${peripheral.advertisement.localName} entered RSSI ${peripheral.rssi}`);
+    console.log(peripheral);
   }
 
   inRange[peripheral.id].lastSeen = Date.now();
