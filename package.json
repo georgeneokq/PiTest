@@ -28,6 +28,7 @@
   "dependencies": {
     "local-network-scanner": "^0.2.0",
     "noble": "^1.9.1",
-    "node-bluetooth": "^1.2.2"
+    "node-bluetooth": "^1.2.2",
+    "rpio": "^0.9.22"
   }
 }
