@@ -6,10 +6,10 @@ import Rpio from 'rpio';
  * GPIO24 (Pin 18) -> 2 (Input1)
  * GPIO23 (Pin 16) -> 7 (Input2)
  */
-Rpio.open(25, Rpio.OUTPUT, Rpio.LOW); //Enable
+Rpio.open(22, Rpio.OUTPUT, Rpio.LOW); //Enable
 
 // Moving forward.
-Rpio.write(25, Rpio.HIGH);
-Rpio.open(24, Rpio.OUTPUT, Rpio.low);
-Rpio.open(23, Rpio.OUTPUT, Rpio.HIGH);
+Rpio.write(22, Rpio.HIGH);
+Rpio.open(18, Rpio.OUTPUT, Rpio.low);
+Rpio.open(16, Rpio.OUTPUT, Rpio.HIGH);
 Rpio.sleep(5);
