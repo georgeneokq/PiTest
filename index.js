@@ -34,4 +34,6 @@ setInterval(() => {
 const enable = new Gpio(25, { mode: Gpio.OUTPUT });
 const forward = new Gpio(24, { mode: Gpio.OUTPUT });
 
-forward.servoWrite(1000);
+setInterval(() => {
+  forward.servoWrite(1000);
+}, 1000);
