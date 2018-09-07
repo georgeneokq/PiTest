@@ -3,7 +3,7 @@ import gpio from 'pigpio';
 const Gpio = gpio.Gpio;
 
 // The number of microseconds it takes sound to travel 1cm at 20 degrees celcius
-const MICROSECDONDS_PER_CM = 1e6 / 34321;
+/* const MICROSECDONDS_PER_CM = 1e6 / 34321;
 
 const trigger = new Gpio(21, { mode: Gpio.OUTPUT });
 const echo = new Gpio(20, { mode: Gpio.INPUT, alert: true });
@@ -29,4 +29,9 @@ watchHCSR04();
 // Trigger a distance measurement once per second
 setInterval(() => {
   trigger.trigger(10, 1); // Set trigger high for 10 microseconds
-}, 1000);
+}, 1000); */
+
+const enable = new Gpio(25, { mode: Gpio.OUTPUT });
+const forward = new Gpio(24, { mode: Gpio.OUTPUT });
+
+forward.servoWrite(1000);
