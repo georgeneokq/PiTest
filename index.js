@@ -12,4 +12,3 @@ Rpio.open(22, Rpio.OUTPUT, Rpio.LOW); //Enable
 Rpio.write(22, Rpio.HIGH);
 Rpio.open(18, Rpio.OUTPUT, Rpio.low);
 Rpio.open(16, Rpio.OUTPUT, Rpio.HIGH);
-Rpio.sleep(5);
