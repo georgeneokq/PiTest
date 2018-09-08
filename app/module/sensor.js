@@ -27,7 +27,7 @@ class Sensor {
     }
 
     // const elapsed = endTime.getTime() - startTime.getTime();// .getTime() turns it into miliseconds.
-    const elapsed = Math.floor(endTime.now() / 1000) - (startTime.now() / 1000); // Dividing by 1000 turns it into seconds.
+    const elapsed = Math.round(endTime.getTime() / 1000) - (startTime.getTime() / 1000); // Dividing by 1000 turns it into seconds.
 
     /*
      * Elapsed time multiplied by the speed of sound (34300 cm/s).
