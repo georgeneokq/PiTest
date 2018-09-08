@@ -13,7 +13,10 @@ class Sensor {
   }
 
   distance() {
-    this.startTrigger();
+    // Call the trigger to HIGH.
+    Rpio.write(this.trigger, Rpio.HIGH);
+    Rpio.sleep(0.00001);// Sleep for 0.01ms
+    Rpio.write(this.trigger, Rpio.LOW);// Set to low to stop the trigger.
     // We will convert this to seconds later.
     let startTime = new Date();
     let endTime = new Date();
