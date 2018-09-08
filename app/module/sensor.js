@@ -28,7 +28,7 @@ class Sensor {
     } */
     setInterval(() => {
       this.startTrigger();
-    }, 1000);
+    }, 0.00001);
     Rpio.poll(this.echo, (pin) => {
       console.log(`Status: ${Rpio.read(pin)}`);
     });
