@@ -9,7 +9,7 @@ class Sensor {
      * Do GPIO Setup
      */
     Rpio.open(trigger, Rpio.OUTPUT);
-    Rpio.open(echo, Rpio.INPUT);
+    Rpio.open(echo, Rpio.INPUT, Rpio.);
   }
 
   distance() {
@@ -27,8 +27,8 @@ class Sensor {
       console.log(`Received: ${Math.floor(endTime.getTime() / 1000)}`);
     } */
 
+    this.startTrigger();
     Rpio.poll(this.echo, (pin) => {
-      this.startTrigger();
       console.log(`Status: ${Rpio.read(pin)}`);
     });
 
