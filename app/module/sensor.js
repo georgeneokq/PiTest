@@ -30,6 +30,7 @@ class Sensor {
         // console.log(`Start: ${startTime.getTime()}`);
         // console.log(`End: ${endTime.getTime()}`);
         const elapsed = this.endTime.getTime() - this.startTime.getTime();// Time in miliseconds.
+        console.log(`Start: ${this.startTime.getTime()} | End: ${this.endTime.getTime()} | Elapsed: ${elapsed}`);
         // console.log(`Elapsed 1: ${elapsed}`);
         // console.log(`Distance: ${(elapsed * 34.3) / 2}`);
 
