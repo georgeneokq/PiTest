@@ -6,10 +6,12 @@ class Init {
     /*
      * Setting interval to test out sensor every second.
      */
-    setInterval(() => {
-      const distance = this.sensor.distance();
-      console.log(distance);
-    }, 1000);
+    setInterval(this.interval, 1000);
+  }
+
+  interval() {
+    const distance = this.sensor.distance();
+    console.log(distance);
   }
 }
 
