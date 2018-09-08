@@ -11,7 +11,7 @@ class Sensor {
     this.startTime = Microtime.now();
     this.endTime = Microtime.now();
 
-    this.distance = 0;
+    this.distance = null;
 
     /*
      * Do GPIO Setup
