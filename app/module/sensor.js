@@ -21,18 +21,12 @@ class Sensor {
     /*
      * Start polling for changes.
      */
+    this.calcDistance();
     Rpio.poll(this.echo, (pin) => {
       if (Rpio.read(pin)) {
-        clearInterval(this.interval);
-        // console.log(`Status: ${Rpio.read(pin)}`);
         this.endTime = new Date();
-        // elapsed = Math.floor(endTime.getTime() / 1000) - Math.floor(startTime.getTime() / 1000); // Dividing by 1000 turns it into seconds.
-        // console.log(`Start: ${startTime.getTime()}`);
-        // console.log(`End: ${endTime.getTime()}`);
         const elapsed = this.endTime.getTime() - this.startTime.getTime();// Time in miliseconds.
         console.log(`Start: ${this.startTime.getTime()} | End: ${this.endTime.getTime()} | Elapsed: ${elapsed}`);
-        // console.log(`Elapsed 1: ${elapsed}`);
-        // console.log(`Distance: ${(elapsed * 34.3) / 2}`);
 
         /*
          * Elapsed time multiplied by the speed of sound (34300 cm/s or 34.3 cm/ms).
