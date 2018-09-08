@@ -8,7 +8,6 @@ class Init {
      */
     // setInterval(this.interval.bind(this.sensor), 1000);
     setInterval(() => {
-      this.sensor.calcDistance();
       console.log(this.sensor.distance);
     }, 2000);
   }
