@@ -26,13 +26,13 @@ class Sensor {
       endTime = new Date();
       console.log(`Received: ${Math.floor(endTime.getTime() / 1000)}`);
     } */
+    const interval = setInterval(() => {
+      this.startTrigger();
+    }, 0.00001);
     Rpio.poll(this.echo, (pin) => {
-      const interval = setInterval(() => {
-        this.startTrigger();
-        if (Rpio.read(pin)) {
-          clearInterval(interval);
-        }
-      }, 0.00001);
+      if (Rpio.read(pin)) {
+        clearInterval(interval);
+      }
       console.log(`Status: ${Rpio.read(pin)}`);
     });
 
