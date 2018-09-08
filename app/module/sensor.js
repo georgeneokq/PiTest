@@ -18,12 +18,12 @@ class Sensor {
     let startTime = new Date();
     let endTime = new Date();
 
-    while (!Rpio.read(this.echo)) {
+    while (Rpio.read(this.echo) === 0) {
       startTime = new Date();
       console.log(`Not received: ${Math.floor(startTime.getTime() / 1000)}`);
     }
 
-    while (Rpio.read(this.echo)) {
+    while (Rpio.read(this.echo) === 1) {
       endTime = new Date();
       console.log(`Received: ${Math.floor(endTime.getTime() / 1000)}`);
     }
