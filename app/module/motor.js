@@ -19,13 +19,13 @@ class Motor {
   forward() {
     Rpio.write(this.input2, Rpio.HIGH);
     Rpio.write(this.input1, Rpio.LOW);
-    Rpio.wrote(this.vcc, Rpio.HIGH);
+    Rpio.write(this.vcc, Rpio.HIGH);
   }
 
   reverse() {
     Rpio.write(this.input2, Rpio.LOW);
     Rpio.write(this.input1, Rpio.HIGH);
-    Rpio.wrote(this.vcc, Rpio.HIGH);
+    Rpio.write(this.vcc, Rpio.HIGH);
   }
 
   stop() {
