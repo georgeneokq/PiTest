@@ -43,9 +43,6 @@ class Sensor {
   }
 
   calcDistance() {
-    // We will convert this to seconds later.
-    this.startTime = new Date();
-    this.endTime = new Date();
     this.interval = setInterval(() => {
       this.startTrigger();
       this.startTime = new Date();
