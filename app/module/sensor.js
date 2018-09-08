@@ -14,7 +14,7 @@ class Sensor {
 
   distance() {
     this.startTrigger();
-    // We will convert this to miliseconds later.
+    // We will convert this to seconds later.
     let startTime = new Date();
     let endTime = new Date();
 
@@ -26,7 +26,8 @@ class Sensor {
       endTime = new Date();
     }
 
-    const elapsed = endTime.getTime() - startTime.getTime();// .getTime() turns it into miliseconds.
+    // const elapsed = endTime.getTime() - startTime.getTime();// .getTime() turns it into miliseconds.
+    const elapsed = Math.floor(endTime.now() / 1000) - (startTime.now() / 1000); // Dividing by 1000 turns it into seconds.
 
     /*
      * Elapsed time multiplied by the speed of sound (34300 cm/s).
