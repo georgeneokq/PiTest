@@ -1,41 +1,24 @@
-import gpio from 'pigpio';
+import Rpio from 'rpio';
 
-const Gpio = gpio.Gpio;
+/*
+ * LP293D Pin-outs
+ * GPIO25 (Pin 22) -> 1 (VCC)
+ * GPIO24 (Pin 18) -> 2 (Input1)
+ * GPIO23 (Pin 16) -> 7 (Input2)
+ */
+Rpio.open(22, Rpio.OUTPUT, Rpio.LOW); //Enable
 
-// The number of microseconds it takes sound to travel 1cm at 20 degrees celcius
-/* const MICROSECDONDS_PER_CM = 1e6 / 34321;
+// Moving forward.
+/* Rpio.write(22, Rpio.HIGH);
+Rpio.open(18, Rpio.OUTPUT, Rpio.low);
+Rpio.open(16, Rpio.OUTPUT, Rpio.HIGH); */
 
-const trigger = new Gpio(21, { mode: Gpio.OUTPUT });
-const echo = new Gpio(20, { mode: Gpio.INPUT, alert: true });
-
-trigger.digitalWrite(0); // Make sure trigger is low
-
-const watchHCSR04 = () => {
-  let startTick;
-
-  echo.on('alert', (level, tick) => {
-    if (level == 1) {
-      startTick = tick;
-    } else {
-      const endTick = tick;
-      const diff = (endTick >> 0) - (startTick >> 0); // Unsigned 32 bit arithmetic
-      console.log(diff / 2 / MICROSECDONDS_PER_CM);
-    }
-  });
-};
-
-watchHCSR04();
-
-// Trigger a distance measurement once per second
-setInterval(() => {
-  trigger.trigger(10, 1); // Set trigger high for 10 microseconds
-}, 1000); */
-
-const enable = new Gpio(25, { mode: Gpio.OUTPUT });
-const forward = new Gpio(24, { mode: Gpio.OUTPUT });
-
-
-setInterval(() => {
-  enable.
-  forward.servoWrite(1000);
-}, 1000);
+/*
+ * HC-SR04
+ * GPIO21 (Pin 40) -> Trigger
+ * GPIO20 (Pin 38) -> Echo
+ */
+Rpio.open(40, Rpio.OUTPUT, Rpio.HIGH);
+const buf = new Buffer(10000);
+Rpio.readbuf(38, buf);
+console.log(buf);
