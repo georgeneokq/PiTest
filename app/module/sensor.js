@@ -16,34 +16,26 @@ class Sensor {
     // We will convert this to seconds later.
     let startTime = new Date();
     let endTime = new Date();
-
-    /* while (Rpio.read(this.echo) === 0) {
-      startTime = new Date();
-      console.log(`Not received: ${Math.floor(startTime.getTime() / 1000)}`);
-    }
-
-    while (Rpio.read(this.echo) === 1) {
-      endTime = new Date();
-      console.log(`Received: ${Math.floor(endTime.getTime() / 1000)}`);
-    } */
     const interval = setInterval(() => {
       this.startTrigger();
+      startTime = new Date();
     }, 1000);
     Rpio.poll(this.echo, (pin) => {
       if (Rpio.read(pin)) {
         clearInterval(interval);
         console.log(`Status: ${Rpio.read(pin)}`);
+        endTime = new Date();
       }
     });
 
     // const elapsed = endTime.getTime() - startTime.getTime();// .getTime() turns it into miliseconds.
-    // const elapsed = Math.floor(endTime.getTime() / 1000) - Math.floor(startTime.getTime() / 1000); // Dividing by 1000 turns it into seconds.
+    const elapsed = Math.floor(endTime.getTime() / 1000) - Math.floor(startTime.getTime() / 1000); // Dividing by 1000 turns it into seconds.
 
     /*
      * Elapsed time multiplied by the speed of sound (34300 cm/s).
      * Divide it by 2 because it has to travel twice, once to the object and another time back.
      */
-    // return (elapsed * 34300) / 2;
+    return (elapsed * 34300) / 2;
   }
 
   startTrigger() {
