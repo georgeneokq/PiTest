@@ -9,7 +9,7 @@ class Sensor {
      * Do GPIO Setup
      */
     Rpio.open(trigger, Rpio.OUTPUT);
-    Rpio.open(echo, Rpio.INPUT, Rpio.);
+    Rpio.open(echo, Rpio.INPUT, Rpio.PULL_DOWN);
   }
 
   distance() {
