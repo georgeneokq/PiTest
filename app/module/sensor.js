@@ -21,7 +21,7 @@ class Sensor {
     let startTime = new Date();
     let endTime = new Date();
 
-    while (Rpio.read(this.echo) === 0) {
+    /* while (Rpio.read(this.echo) === 0) {
       startTime = new Date();
       console.log(`Not received: ${Math.floor(startTime.getTime() / 1000)}`);
     }
@@ -29,7 +29,11 @@ class Sensor {
     while (Rpio.read(this.echo) === 1) {
       endTime = new Date();
       console.log(`Received: ${Math.floor(endTime.getTime() / 1000)}`);
-    }
+    } */
+
+    Rpio.poll(this.echo, (pin) => {
+      console.log(`Status: ${Rpio.read(pin)}`);
+    });
 
     // const elapsed = endTime.getTime() - startTime.getTime();// .getTime() turns it into miliseconds.
     const elapsed = Math.floor(endTime.getTime() / 1000) - Math.floor(startTime.getTime() / 1000); // Dividing by 1000 turns it into seconds.
