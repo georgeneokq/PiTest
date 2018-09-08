@@ -28,7 +28,7 @@ class Sensor {
     } */
     const interval = setInterval(() => {
       this.startTrigger();
-    }, 0.00001);
+    }, 1000);
     Rpio.poll(this.echo, (pin) => {
       if (Rpio.read(pin)) {
         clearInterval(interval);
