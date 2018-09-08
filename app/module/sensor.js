@@ -47,7 +47,7 @@ class Sensor {
     this.interval = setInterval(() => {
       this.startTrigger();
       this.startTime = new Date();
-    }, 1000);
+    }, 0.00001);
   }
 
   startTrigger() {
