@@ -20,10 +20,12 @@ class Sensor {
 
     while (!Rpio.read(this.echo)) {
       startTime = new Date();
+      console.log(`Not received: ${Math.floor(startTime.getTime() / 1000)}`);
     }
 
     while (Rpio.read(this.echo)) {
       endTime = new Date();
+      console.log(`Received: ${Math.floor(endTime.getTime() / 1000)}`);
     }
 
     // const elapsed = endTime.getTime() - startTime.getTime();// .getTime() turns it into miliseconds.
