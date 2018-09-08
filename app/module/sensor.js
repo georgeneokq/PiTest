@@ -25,7 +25,7 @@ class Sensor {
     this.calcDistance();
     Rpio.poll(this.echo, (pin) => {
       if (Rpio.read(pin)) {
-        this.endTime = new Date();
+        this.endTime = Microtime.now();
         const elapsed = this.endTime - this.startTime;// Time in miliseconds.
         // console.log(`Start: ${this.startTime} | End: ${this.endTime} | Elapsed: ${elapsed} | Distance: ${(elapsed * 34.3) / 2}cm`);
         console.log(`Start: ${this.startTime} | End: ${this.endTime} | Elapsed: ${elapsed} | Distance: ${(elapsed * 0.0343) / 2}cm`);
