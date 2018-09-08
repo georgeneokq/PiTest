@@ -26,13 +26,12 @@ class Sensor {
       endTime = new Date();
       console.log(`Received: ${Math.floor(endTime.getTime() / 1000)}`);
     } */
-
-    this.startTrigger();
     setInterval(() => {
-      Rpio.poll(this.echo, (pin) => {
-        console.log(`Status: ${Rpio.read(pin)}`);
-      });
+      this.startTrigger();
     }, 1000);
+    Rpio.poll(this.echo, (pin) => {
+      console.log(`Status: ${Rpio.read(pin)}`);
+    });
 
     // const elapsed = endTime.getTime() - startTime.getTime();// .getTime() turns it into miliseconds.
     // const elapsed = Math.floor(endTime.getTime() / 1000) - Math.floor(startTime.getTime() / 1000); // Dividing by 1000 turns it into seconds.
