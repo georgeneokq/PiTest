@@ -6,7 +6,7 @@ class Init {
     /*
      * Setting interval to test out sensor every second.
      */
-    setInterval(this.interval, 1000);
+    setInterval(this.interval.bind(this.sensor), 1000);
   }
 
   interval() {
