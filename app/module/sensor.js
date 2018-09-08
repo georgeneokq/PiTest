@@ -13,10 +13,6 @@ class Sensor {
   }
 
   distance() {
-    // Call the trigger to HIGH.
-    Rpio.write(this.trigger, Rpio.HIGH);
-    Rpio.sleep(0.00001);// Sleep for 0.01ms
-    Rpio.write(this.trigger, Rpio.LOW);// Set to low to stop the trigger.
     // We will convert this to seconds later.
     let startTime = new Date();
     let endTime = new Date();
@@ -32,17 +28,18 @@ class Sensor {
     } */
 
     Rpio.poll(this.echo, (pin) => {
+      this.startTrigger();
       console.log(`Status: ${Rpio.read(pin)}`);
     });
 
     // const elapsed = endTime.getTime() - startTime.getTime();// .getTime() turns it into miliseconds.
-    const elapsed = Math.floor(endTime.getTime() / 1000) - Math.floor(startTime.getTime() / 1000); // Dividing by 1000 turns it into seconds.
+    // const elapsed = Math.floor(endTime.getTime() / 1000) - Math.floor(startTime.getTime() / 1000); // Dividing by 1000 turns it into seconds.
 
     /*
      * Elapsed time multiplied by the speed of sound (34300 cm/s).
      * Divide it by 2 because it has to travel twice, once to the object and another time back.
      */
-    return (elapsed * 34300) / 2;
+    // return (elapsed * 34300) / 2;
   }
 
   startTrigger() {
