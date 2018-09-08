@@ -39,6 +39,7 @@ class Sensor {
          * Divide it by 2 because it has to travel twice, once to the object and another time back.
          */
         this.distance = (elapsed * 34.3) / 2;
+        Rpio.poll(pin, null);
       }
     });
   }
