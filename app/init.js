@@ -7,7 +7,10 @@ class Init {
      * Setting interval to test out sensor every second.
      */
     // setInterval(this.interval.bind(this.sensor), 1000);
-    console.log(this.sensor.distance());
+    setInterval(() => {
+      this.sensor.calcDistance();
+      console.log(this.sensor.distance);
+    }, 1000);
   }
 
   interval() {

@@ -4,6 +4,7 @@ class Sensor {
   constructor(trigger, echo) {
     this.trigger = trigger;
     this.echo = echo;
+    this.distance = 0;
 
     /*
      * Do GPIO Setup
@@ -12,7 +13,7 @@ class Sensor {
     Rpio.open(echo, Rpio.INPUT, Rpio.PULL_DOWN);
   }
 
-  distance() {
+  calcDistance() {
     // We will convert this to seconds later.
     let startTime = new Date();
     let endTime = new Date();
@@ -24,24 +25,22 @@ class Sensor {
     Rpio.poll(this.echo, (pin) => {
       if (Rpio.read(pin)) {
         clearInterval(interval);
-        console.log(`Status: ${Rpio.read(pin)}`);
+        // console.log(`Status: ${Rpio.read(pin)}`);
         endTime = new Date();
         // elapsed = Math.floor(endTime.getTime() / 1000) - Math.floor(startTime.getTime() / 1000); // Dividing by 1000 turns it into seconds.
         // console.log(`Start: ${startTime.getTime()}`);
         // console.log(`End: ${endTime.getTime()}`);
-        elapsed = endTime.getTime() - startTime.getTime();
-        console.log(`Elapsed 1: ${elapsed}`);
-        console.log(`Distance: ${(elapsed * 34.3) / 2}`);
+        elapsed = endTime.getTime() - startTime.getTime();// Time in miliseconds.
+        // console.log(`Elapsed 1: ${elapsed}`);
+        // console.log(`Distance: ${(elapsed * 34.3) / 2}`);
+
+        /*
+         * Elapsed time multiplied by the speed of sound (34300 cm/s or 34.3 cm/ms).
+         * Divide it by 2 because it has to travel twice, once to the object and another time back.
+         */
+        this.distance = (elapsed * 34.3) / 2;
       }
     });
-
-    // const elapsed = endTime.getTime() - startTime.getTime();// .getTime() turns it into miliseconds.
-
-    /*
-     * Elapsed time multiplied by the speed of sound (34300 cm/s).
-     * Divide it by 2 because it has to travel twice, once to the object and another time back.
-     */
-    return (elapsed * 34300) / 2;
   }
 
   startTrigger() {
