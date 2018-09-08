@@ -31,11 +31,11 @@ class Sensor {
         // console.log(`End: ${endTime.getTime()}`);
         elapsed = endTime.getTime() - startTime.getTime();
         console.log(`Elapsed 1: ${elapsed}`);
+        console.log(`Distance: ${(elapsed * 34300) / 2}`);
       }
     });
 
     // const elapsed = endTime.getTime() - startTime.getTime();// .getTime() turns it into miliseconds.
-    console.log(`Elapsed: ${elapsed}`);
 
     /*
      * Elapsed time multiplied by the speed of sound (34300 cm/s).
