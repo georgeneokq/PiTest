@@ -16,6 +16,7 @@ class Sensor {
     // We will convert this to seconds later.
     let startTime = new Date();
     let endTime = new Date();
+    let elapsed = 0;
     const interval = setInterval(() => {
       this.startTrigger();
       startTime = new Date();
@@ -25,11 +26,11 @@ class Sensor {
         clearInterval(interval);
         console.log(`Status: ${Rpio.read(pin)}`);
         endTime = new Date();
+        elapsed = Math.floor(endTime.getTime() / 1000) - Math.floor(startTime.getTime() / 1000); // Dividing by 1000 turns it into seconds.
       }
     });
 
     // const elapsed = endTime.getTime() - startTime.getTime();// .getTime() turns it into miliseconds.
-    const elapsed = Math.floor(endTime.getTime() / 1000) - Math.floor(startTime.getTime() / 1000); // Dividing by 1000 turns it into seconds.
     console.log(`Elapsed: ${elapsed}`);
 
     /*
