@@ -26,7 +26,7 @@ class Sensor {
       if (Rpio.read(pin)) {
         this.endTime = new Date();
         const elapsed = this.endTime.getTime() - this.startTime.getTime();// Time in miliseconds.
-        console.log(`Start: ${this.startTime.getTime()} | End: ${this.endTime.getTime()} | Elapsed: ${elapsed}`);
+        console.log(`Start: ${this.startTime.getTime()} | End: ${this.endTime.getTime()} | Elapsed: ${elapsed} | Distance: ${(elapsed * 34.3) / 2}cm`);
 
         /*
          * Elapsed time multiplied by the speed of sound (34300 cm/s or 34.3 cm/ms).
