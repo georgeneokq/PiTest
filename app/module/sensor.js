@@ -27,6 +27,7 @@ class Sensor {
         console.log(`Status: ${Rpio.read(pin)}`);
         endTime = new Date();
         elapsed = Math.floor(endTime.getTime() / 1000) - Math.floor(startTime.getTime() / 1000); // Dividing by 1000 turns it into seconds.
+        console.log(`Elapsed 1: ${elapsed}`);
       }
     });
 
