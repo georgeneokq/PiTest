@@ -4,6 +4,12 @@ class Sensor {
   constructor(trigger, echo) {
     this.trigger = trigger;
     this.echo = echo;
+
+    // Time
+    this.interval = null;
+    this.startTime = new Date();
+    this.endTime = new Date();
+
     this.distance = 0;
 
     /*
@@ -11,26 +17,19 @@ class Sensor {
      */
     Rpio.open(trigger, Rpio.OUTPUT);
     Rpio.open(echo, Rpio.INPUT, Rpio.PULL_DOWN);
-  }
 
-  calcDistance() {
-    // We will convert this to seconds later.
-    let startTime = new Date();
-    let endTime = new Date();
-    let elapsed = 0;
-    const interval = setInterval(() => {
-      this.startTrigger();
-      startTime = new Date();
-    }, 1000);
+    /*
+     * Start polling for changes.
+     */
     Rpio.poll(this.echo, (pin) => {
       if (Rpio.read(pin)) {
-        clearInterval(interval);
+        clearInterval(this.interval);
         // console.log(`Status: ${Rpio.read(pin)}`);
-        endTime = new Date();
+        this.endTime = new Date();
         // elapsed = Math.floor(endTime.getTime() / 1000) - Math.floor(startTime.getTime() / 1000); // Dividing by 1000 turns it into seconds.
         // console.log(`Start: ${startTime.getTime()}`);
         // console.log(`End: ${endTime.getTime()}`);
-        elapsed = endTime.getTime() - startTime.getTime();// Time in miliseconds.
+        const elapsed = this.endTime.getTime() - this.startTime.getTime();// Time in miliseconds.
         // console.log(`Elapsed 1: ${elapsed}`);
         // console.log(`Distance: ${(elapsed * 34.3) / 2}`);
 
@@ -39,9 +38,18 @@ class Sensor {
          * Divide it by 2 because it has to travel twice, once to the object and another time back.
          */
         this.distance = (elapsed * 34.3) / 2;
-        Rpio.poll(pin, null);
       }
     });
+  }
+
+  calcDistance() {
+    // We will convert this to seconds later.
+    this.startTime = new Date();
+    this.endTime = new Date();
+    this.interval = setInterval(() => {
+      this.startTrigger();
+      this.startTime = new Date();
+    }, 1000);
   }
 
   startTrigger() {
