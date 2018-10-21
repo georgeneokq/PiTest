@@ -3,31 +3,26 @@ import Microtime from 'microtime';
 import events from 'events';
 
 class Sensor {
-  constructor(trigger, echo) {
+  constructor(triggerPin, echoPin) {
 
     this.eventEmitter = new events.EventEmitter();
 
-    this.trigger = trigger;
-    this.echo = echo;
-
-    // Time
-    this.interval = null;
-    this.startTime = Microtime.now();
-    this.endTime = Microtime.now();
-
-    this.distance = null;
+    this.triggerPin = triggerPin;
+    this.echoPin = echoPin;
+    
+    let startTime;
+    let endTime;
 
     /*
      * Do GPIO Setup
      */
-    Rpio.open(trigger, Rpio.OUTPUT);
-    Rpio.open(echo, Rpio.INPUT, Rpio.PULL_DOWN);
+    Rpio.open(triggerPin, Rpio.OUTPUT);
+    Rpio.open(echoPin, Rpio.INPUT, Rpio.PULL_DOWN);
 
     /*
-     * IMPROVED VERSION 
-     */ 
-    this.startReadingDistance();
-    Rpio.poll(this.echo, pin => {
+     * Poll for changes
+     */
+    Rpio.poll(this.echoPin, pin => {
 
         // If pin value is HIGH
         if(Rpio.read(pin)) {
@@ -48,6 +43,8 @@ class Sensor {
           this.eventEmitter.emit('distancechanged');
         }
     });
+
+    this.trigger();
   }
 
   // Conveninent listening of events
@@ -62,16 +59,16 @@ class Sensor {
 
   startReadingDistance() {
     this.interval = setInterval(() => {
-      this.startTrigger();
+      this.trigger();
       this.startTime = Microtime.now();
     }, 1000);
   }
 
-  startTrigger() {
+  trigger() {
     // Call the trigger to HIGH.
-    Rpio.write(this.trigger, Rpio.HIGH);
+    Rpio.write(this.triggerPin, Rpio.HIGH);
     Rpio.sleep(0.00001);// Sleep for 0.01ms
-    Rpio.write(this.trigger, Rpio.LOW);// Set to low to stop the trigger.
+    Rpio.write(this.triggerPin, Rpio.LOW);// Set to low to stop the trigger.
   }
 }
 

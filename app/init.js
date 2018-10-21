@@ -13,12 +13,17 @@ class Init {
     this.maxDistance = 18; // in cm
     
     this.sensor.on('distancechanged', () => {
-      console.log('distance changed');
+
       // Stop motor if distance of object exceeds the specified max distance
       if(this.sensor.distance > this.maxDistance) {
         this.motor.stop();
+        console.log(`Motor stopped. Distance: ${(this.sensor.calcDistance(this.endTime - this.startTime))}`);
       } else {
         this.motor.forward();
+        console.log(`Motor running. Distance: ${(this.sensor.calcDistance(this.endTime - this.startTime))}`);
+        
+        // Continue checking for distance with sensor
+        this.sensor.trigger();
       }
     });
   }
