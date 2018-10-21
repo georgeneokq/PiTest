@@ -31,6 +31,8 @@ class Sensor {
      * Poll for changes
      */
     Rpio.poll(this.echoPin, pin => {
+
+      console.log('polling');
         
       // If pin value is HIGH
         if(Rpio.read(pin)) {
@@ -46,9 +48,6 @@ class Sensor {
           // Emit an event to notify that distance has changed
           this.eventEmitter.emit('distancechanged');
 
-          // Reset start time
-          startTime = Microtime.now();
-          this.trigger();
         }
     });
 
