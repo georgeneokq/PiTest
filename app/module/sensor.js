@@ -31,8 +31,6 @@ class Sensor {
      * Poll for changes
      */
     Rpio.poll(this.echoPin, pin => {
-        
-      console.log('polling');
 
       // If pin value is HIGH
         if(Rpio.read(pin)) {
