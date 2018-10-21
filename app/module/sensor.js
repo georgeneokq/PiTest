@@ -52,8 +52,9 @@ class Sensor {
         }
         this.trigger();
     });
-  }
 
+    this.trigger();
+  }
 
 
   // Conveninent listening of events
