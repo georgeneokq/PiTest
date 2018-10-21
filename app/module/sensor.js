@@ -21,12 +21,11 @@ class Sensor {
     let startTime = Microtime.now();
     let endTime;
 
-    // let interval = setInterval(() => {
-    //   this.trigger();
-    //   startTime = Microtime.now();
-    // }, 1000);
-
-    this.trigger();
+    // In case sound trigger doesnt return, set trigger high again (?)
+    let interval = setInterval(() => {
+      this.trigger();
+      startTime = Microtime.now();
+    }, 1000);
 
     /*
      * Poll for changes
