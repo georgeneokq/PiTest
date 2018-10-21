@@ -18,12 +18,14 @@ class Sensor {
     Rpio.open(triggerPin, Rpio.OUTPUT);
     Rpio.open(echoPin, Rpio.INPUT, Rpio.PULL_DOWN);
 
-    let startTime = Microtime.now();
+    let startTime;
     let endTime;
 
     let interval = setInterval(() => {
       this.trigger();
+      startTime = Microtime.now();
     }, 1000);
+    console.log(`Microtime: ${Microtime.now()}`);
 
     /*
      * Poll for changes
