@@ -49,6 +49,11 @@ class Sensor {
     });
   }
 
+  // Conveninent listening of events
+  on(eventType, callback) {
+    this.eventEmitter.on(eventType, callback);
+  }
+
   // Return distance based on elapsed time
   calcDistance(elapsedTime) {
     return (elapsedTime * 0.0343) / 2;

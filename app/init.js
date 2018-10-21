@@ -11,8 +11,16 @@ class Init {
     
     // Check if distance is lesser than the maximum allowed distance
     this.maxDistance = 18; // in cm
-    console.log('init');
-    console.log(this.sensor.on);
+    
+    this.sensor.on('distancechanged', () => {
+      console.log('distance changed');
+      // Stop motor if distance of object exceeds the specified max distance
+      if(this.sensor.distance > this.maxDistance) {
+        this.motor.stop();
+      } else {
+        this.motor.forward();
+      }
+    });
   }
 }
 
