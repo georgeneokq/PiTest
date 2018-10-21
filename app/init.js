@@ -10,7 +10,7 @@ class Init {
     this.motor.forward();
     setInterval(() => {
       console.log(this.sensor.distance);
-      if (this.sensor.distance < 50) { // Less than 18cm for testing.
+      if (this.sensor.distance < 18) { // Less than 18cm for testing.
         this.motor.stop();
       } else {
         this.motor.forward();
