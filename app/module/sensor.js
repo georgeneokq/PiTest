@@ -21,6 +21,10 @@ class Sensor {
     let startTime = Microtime.now();
     let endTime;
 
+    let interval = setInterval(() => {
+      this.trigger();
+    }, 1000);
+
     /*
      * Poll for changes
      */
@@ -47,7 +51,7 @@ class Sensor {
           // Reset start time
           startTime = Microtime.now();
         }
-        this.trigger();
+        // this.trigger();
     });
 
     this.trigger();
