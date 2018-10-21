@@ -1,8 +1,12 @@
 import Rpio from 'rpio';
 import Microtime from 'microtime';
+import events from 'events';
 
 class Sensor {
   constructor(trigger, echo) {
+
+    this.eventEmitter = new events.EventEmitter();
+
     this.trigger = trigger;
     this.echo = echo;
 
@@ -21,8 +25,9 @@ class Sensor {
 
     /*
      * Start polling for changes.
+     * SHITTY BUGGED VERSION
      */
-    this.calcDistance();
+    this.startReadingDistance();
     Rpio.poll(this.echo, (pin) => {
       if (Rpio.read(pin)) {
         this.endTime = Microtime.now();
@@ -38,9 +43,39 @@ class Sensor {
         this.distance = (elapsed * 0.0343) / 2;
       }
     });
+
+    /*
+     * IMPROVED VERSION 
+     */ 
+    Rpio.poll(this.echo, pin => {
+
+        // If pin value is HIGH
+        if(Rpio.read(pin)) {
+
+          // Echo has returned, elapsed time can be used to calculate distance
+          this.endTime = Microtime.now(); 
+
+          // Calculate distance based on speed of sound
+          const elapsed = this.endTime - this.startTime; // Time in milliseconds
+
+          /*
+          * Elapsed time multiplied by the speed of sound (34300 cm/s or 34.3 cm/ms).
+          * Divide it by 2 because it has to travel twice, once to the object and another time back.
+          */
+          this.distance = calcDistance(elapsed);
+
+          // Emit an event to notify that distance has changed
+          this.eventEmitter.emit('distancechanged');
+        }
+    });
   }
 
-  calcDistance() {
+  // Return distance based on elapsed time
+  calcDistance(elapsedTime) {
+    return (elapsedTime * 0.0343) / 2;
+  }
+
+  startReadingDistance() {
     this.interval = setInterval(() => {
       this.startTrigger();
       this.startTime = Microtime.now();

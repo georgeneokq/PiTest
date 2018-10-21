@@ -8,14 +8,11 @@ class Init {
      */
     // setInterval(this.interval.bind(this.sensor), 1000);
     this.motor.forward();
-    setInterval(() => {
-      console.log(this.sensor.distance);
-      if (this.sensor.distance < 18) { // Less than 18cm for testing.
-        this.motor.stop();
-      } else {
-        this.motor.forward();
-      }
-    }, 2000);
+    
+    // Check if distance is lesser than the maximum allowed distance
+    this.maxDistance = 18; // in cm
+    console.log('init');
+    console.log(this.sensor.on);
   }
 }
 
