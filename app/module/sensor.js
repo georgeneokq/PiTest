@@ -46,7 +46,7 @@ class Sensor {
           // Emit an event to notify that distance has changed
           this.eventEmitter.emit('distancechanged');
 
-          console.log(`Motor ${(this.distance < 18) ? 'stopped' : 'running'}. Distance: ${this.sensor.distance}`);
+          console.log(`Motor ${(this.distance < 18) ? 'stopped' : 'running'}. Distance: ${this.distance}`);
         }
     });
 
