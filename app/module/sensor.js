@@ -43,6 +43,7 @@ class Sensor {
           */
           this.distance = calcDistance(elapsed);
 
+          console.log('recalculating from sensor class');
           // Emit an event to notify that distance has changed
           this.eventEmitter.emit('distancechanged');
         }
