@@ -10,14 +10,16 @@ class Sensor {
     this.triggerPin = triggerPin;
     this.echoPin = echoPin;
     
-    let startTime;
-    let endTime;
-
     /*
      * Do GPIO Setup
      */
     Rpio.open(triggerPin, Rpio.OUTPUT);
     Rpio.open(echoPin, Rpio.INPUT, Rpio.PULL_DOWN);
+
+    let startTime = Microtime.now();
+    let endTime = Microtime.now();
+
+    this.trigger();
 
     /*
      * Poll for changes
@@ -41,10 +43,12 @@ class Sensor {
 
           // Emit an event to notify that distance has changed
           this.eventEmitter.emit('distancechanged');
+
+          // Reset start time
+          this.startTime = Microtime.now();
+          this.trigger();
         }
     });
-
-    this.trigger();
   }
 
   // Conveninent listening of events

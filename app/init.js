@@ -21,9 +21,6 @@ class Init {
       } else {
         this.motor.forward();
         console.log(`Motor running. Distance: ${(this.sensor.calcDistance(this.endTime - this.startTime))}`);
-        
-        // Continue checking for distance with sensor
-        this.sensor.trigger();
       }
     });
   }
