@@ -27,10 +27,11 @@ class Sensor {
      * Poll for changes
      */
     Rpio.poll(this.echoPin, pin => {
-
+        console.log('polling');
         // If pin value is HIGH
         if(Rpio.read(pin)) {
-
+          console.log('pin read');
+          
           // Echo has returned, elapsed time can be used to calculate distance
           endTime = Microtime.now(); 
 
