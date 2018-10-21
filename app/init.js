@@ -20,10 +20,10 @@ class Init {
       // Stop motor if distance of object exceeds the specified max distance
       if(this.sensor.distance > this.maxDistance) {
         this.motor.stop();
-        console.log(`Motor stopped. Distance: ${(this.sensor.calcDistance(this.endTime - this.startTime))}`);
+        console.log(`Motor stopped. Distance: ${this.sensor.distance}`);
       } else {
         this.motor.forward();
-        console.log(`Motor running. Distance: ${(this.sensor.calcDistance(this.endTime - this.startTime))}`);
+        console.log(`Motor running. Distance: ${this.sensor.distance}`);
       }
     });
   }

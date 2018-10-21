@@ -20,8 +20,8 @@ class Sensor {
 
     let startTime = Microtime.now();
     let endTime = Microtime.now();
-    let interval = setInterval(() => {
 
+    let interval = setInterval(() => {
       this.trigger();
     }, 1000);
 
@@ -33,6 +33,8 @@ class Sensor {
         // If pin value is HIGH
         if(Rpio.read(pin)) {
           console.log('pin read');
+          // Once pin is read, clear the interval
+          clearInterval(interval);
           
           // Echo has returned, elapsed time can be used to calculate distance
           endTime = Microtime.now(); 
@@ -51,7 +53,7 @@ class Sensor {
 
           // Reset start time
           startTime = Microtime.now();
-          // this.trigger();
+          this.trigger();
         }
     });
   }
