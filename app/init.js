@@ -16,7 +16,7 @@ class Init {
     
     this.sensor.on('distancechanged', () => {
 
-      console.log(`Motor ${(this.sensor.distance < this.lowestAllowedDistance) ? 'stopped' : 'running'}. Distance: ${this.sensor.distance}`);
+      // console.log(`Motor ${(this.sensor.distance < this.lowestAllowedDistance) ? 'stopped' : 'running'}. Distance: ${this.sensor.distance}`);
       // Stop motor if distance of object exceeds the specified max distance
       if(this.sensor.distance < this.lowestAllowedDistance) {
         this.motor.stop();
