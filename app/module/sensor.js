@@ -64,6 +64,7 @@ class Sensor {
    * Divide it by 2 because it has to travel twice, once to the object and another time back.
    */
   calcDistance(elapsedTime) {
+    console.log(elapsedTime);
     // return (elapsedTime * 0.0343) / 2; // What's this unit actually...
     return (elapsedTime * 34.3) / 2; // in cm
   }
