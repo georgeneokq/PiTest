@@ -24,27 +24,6 @@ class Sensor {
     Rpio.open(echo, Rpio.INPUT, Rpio.PULL_DOWN);
 
     /*
-     * Start polling for changes.
-     * SHITTY BUGGED VERSION
-     */
-    this.startReadingDistance();
-    Rpio.poll(this.echo, (pin) => {
-      if (Rpio.read(pin)) {
-        this.endTime = Microtime.now();
-        const elapsed = this.endTime - this.startTime;// Time in miliseconds.
-        // console.log(`Start: ${this.startTime} | End: ${this.endTime} | Elapsed: ${elapsed} | Distance: ${(elapsed * 34.3) / 2}cm`);
-        console.log(`Start: ${this.startTime} | End: ${this.endTime} | Elapsed: ${elapsed} | Distance: ${(elapsed * 0.0343) / 2}cm`);
-
-        /*
-         * Elapsed time multiplied by the speed of sound (34300 cm/s or 34.3 cm/ms).
-         * Divide it by 2 because it has to travel twice, once to the object and another time back.
-         */
-        // this.distance = (elapsed * 34.3) / 2;
-        this.distance = (elapsed * 0.0343) / 2;
-      }
-    });
-
-    /*
      * IMPROVED VERSION 
      */ 
     Rpio.poll(this.echo, pin => {
