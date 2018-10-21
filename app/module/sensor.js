@@ -9,6 +9,8 @@ class Sensor {
 
     this.triggerPin = triggerPin;
     this.echoPin = echoPin;
+
+    this.distance = 0;
     
     /*
      * Do GPIO Setup
@@ -30,10 +32,10 @@ class Sensor {
         if(Rpio.read(pin)) {
 
           // Echo has returned, elapsed time can be used to calculate distance
-          this.endTime = Microtime.now(); 
+          endTime = Microtime.now(); 
 
           // Calculate distance based on speed of sound
-          const elapsed = this.endTime - this.startTime; // Time in milliseconds
+          const elapsed = endTime - startTime; // Time in milliseconds
 
           /*
           * Elapsed time multiplied by the speed of sound (34300 cm/s or 34.3 cm/ms).
@@ -45,7 +47,7 @@ class Sensor {
           this.eventEmitter.emit('distancechanged');
 
           // Reset start time
-          this.startTime = Microtime.now();
+          startTime = Microtime.now();
           this.trigger();
         }
     });
@@ -59,13 +61,6 @@ class Sensor {
   // Return distance based on elapsed time
   calcDistance(elapsedTime) {
     return (elapsedTime * 0.0343) / 2;
-  }
-
-  startReadingDistance() {
-    this.interval = setInterval(() => {
-      this.trigger();
-      this.startTime = Microtime.now();
-    }, 1000);
   }
 
   trigger() {
