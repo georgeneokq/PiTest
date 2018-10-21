@@ -19,11 +19,7 @@ class Sensor {
     Rpio.open(echoPin, Rpio.INPUT, Rpio.PULL_DOWN);
 
     let startTime = Microtime.now();
-    let endTime = Microtime.now();
-
-    let interval = setInterval(() => {
-      this.trigger();
-    }, 1000);
+    let endTime;
 
     /*
      * Poll for changes
@@ -53,10 +49,12 @@ class Sensor {
 
           // Reset start time
           startTime = Microtime.now();
-          this.trigger();
         }
+        this.trigger();
     });
   }
+
+
 
   // Conveninent listening of events
   on(eventType, callback) {
