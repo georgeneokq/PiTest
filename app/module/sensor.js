@@ -42,7 +42,7 @@ class Sensor {
           * Elapsed time multiplied by the speed of sound (34300 cm/s or 34.3 cm/ms).
           * Divide it by 2 because it has to travel twice, once to the object and another time back.
           */
-          this.distance = calcDistance(elapsed);
+          this.distance = this.calcDistance(elapsed);
 
           // Emit an event to notify that distance has changed
           this.eventEmitter.emit('distancechanged');
