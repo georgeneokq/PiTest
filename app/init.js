@@ -3,6 +3,8 @@ class Init {
     this.sensor = sensor;
     this.motor = motor;
 
+    console.log('App initialized');
+
     /*
      * Setting interval to test out sensor every second.
      */
@@ -13,6 +15,7 @@ class Init {
     this.maxDistance = 18; // in cm
     
     this.sensor.on('distancechanged', () => {
+      console.log('distancechanged');
 
       // Stop motor if distance of object exceeds the specified max distance
       if(this.sensor.distance > this.maxDistance) {
