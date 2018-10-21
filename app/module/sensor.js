@@ -29,8 +29,6 @@ class Sensor {
         // If pin value is HIGH
         if(Rpio.read(pin)) {
           console.log('pin read');
-          // Once pin is read, clear the interval
-          clearInterval(interval);
           
           // Echo has returned, elapsed time can be used to calculate distance
           endTime = Microtime.now(); 
