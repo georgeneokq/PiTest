@@ -30,7 +30,7 @@ class Sensor {
     /*
      * Poll for changes
      */
-    Rpio.poll(this.echoPin, pin => {
+    Rpio.poll(this.echoPin, (pin) => {
 
       // If pin value is HIGH
         if(Rpio.read(pin)) {
