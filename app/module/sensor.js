@@ -33,7 +33,7 @@ class Sensor {
       endTime = Microtime.now(); 
 
       // Calculate distance based on speed of sound
-      const elapsed = endTime - startTime; // Time in milliseconds
+      const elapsed = endTime - startTime; // Time in microseconds
         
       this.distance = this.calcDistance(elapsed);
         
