@@ -54,7 +54,9 @@ class Sensor {
         }
     }, Rpio.POLL_HIGH);
 
-    this.trigger();
+    let timeout = setTimeout(_ => {
+        this.trigger();
+    }, 1000);
   }
 
 
