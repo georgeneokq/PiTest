@@ -33,7 +33,7 @@ class Sensor {
     Rpio.poll(this.echoPin, pin => {
 
       // Un-commenting this introduces a new bug
-      // console.log('polling');
+      console.log('polling');
 
       // If pin value is HIGH
         if(Rpio.read(pin)) {
