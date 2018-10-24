@@ -22,15 +22,17 @@ class Sensor {
     let endTime;
 
     // In case sound trigger doesnt return, set trigger high again (?)
-    let interval = setInterval(() => {
-      this.trigger();
-      startTime = Microtime.now();
-    }, 1000);
+    // let interval = setInterval(() => {
+    //   this.trigger();
+    //   startTime = Microtime.now();
+    // }, 1000);
 
     /*
      * Poll for changes
      */
     Rpio.poll(this.echoPin, pin => {
+
+      this.trigger();
 
       // Un-commenting this introduces a new bug
       // console.log('polling');
