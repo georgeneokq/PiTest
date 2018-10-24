@@ -34,30 +34,27 @@ class Sensor {
 
       // Un-commenting this introduces a new bug
       // console.log('polling');
+  
+        // Echo has returned, elapsed time can be used to calculate distance
+        endTime = Microtime.now(); 
 
-      // If pin value is HIGH
-        // if(Rpio.read(pin)) {
-          
-          // Echo has returned, elapsed time can be used to calculate distance
-          endTime = Microtime.now(); 
-
-          // Calculate distance based on speed of sound
-          const elapsed = endTime - startTime; // Time in milliseconds
-
-          this.distance = this.calcDistance(elapsed);
-
-          // Restart the startTime
-          startTime = Microtime.now();
-
-          // Emit an event to notify that distance has changed
-          this.eventEmitter.emit('distancechanged');
-
-          // Send new signal
-          // this.trigger();
-          
-          // Cant believe it. The log function is bugged. LOL. Try un-commenting the first console.log of this function
-          console.log(`Motor ${(this.distance < 18) ? 'stopped' : 'running'}. Distance: ${this.distance}`);
-        // }
+        // Calculate distance based on speed of sound
+        const elapsed = endTime - startTime; // Time in milliseconds
+        
+        this.distance = this.calcDistance(elapsed);
+        
+        // Restart the startTime
+        startTime = Microtime.now();
+        
+        // Emit an event to notify that distance has changed
+        this.eventEmitter.emit('distancechanged');
+        
+        // Send new signal
+        // this.trigger();
+        
+        // Cant believe it. The log function is bugged. LOL. Try un-commenting the first console.log of this function
+        console.log(`Motor ${(this.distance < 18) ? 'stopped' : 'running'}. Distance: ${this.distance}`);
+        
     }, Rpio.POLL_HIGH);
 
     let timeout = setTimeout(_ => {
