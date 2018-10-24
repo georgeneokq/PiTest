@@ -32,10 +32,10 @@ class Sensor {
      */
     Rpio.poll(this.echoPin, pin => {
 
-      this.trigger();
+      // this.trigger();
 
       // Un-commenting this introduces a new bug
-      // console.log('polling');
+      console.log('polling');
 
       // If pin value is HIGH
         if(Rpio.read(pin)) {
