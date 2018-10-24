@@ -46,12 +46,14 @@ class Sensor {
 
           this.distance = this.calcDistance(elapsed);
 
+          // Restart the startTime
+          startTime = Microtime.now();
+
           // Emit an event to notify that distance has changed
           this.eventEmitter.emit('distancechanged');
 
           // Send new signal
-          this.trigger();
-          startTime = Microtime.now();
+          // this.trigger();
           
           // Cant believe it. The log function is bugged. LOL. Try un-commenting the first console.log of this function
           console.log(`Motor ${(this.distance < 18) ? 'stopped' : 'running'}. Distance: ${this.distance}`);

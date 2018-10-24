@@ -23,6 +23,7 @@ class Init {
       } else {
         this.motor.forward();
       }
+      this.sensor.trigger();
     });
   }
 } 
