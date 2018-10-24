@@ -32,10 +32,8 @@ class Sensor {
      */
     Rpio.poll(this.echoPin, pin => {
 
-      // this.trigger();
-
       // Un-commenting this introduces a new bug
-      console.log('polling');
+      // console.log('polling');
 
       // If pin value is HIGH
         if(Rpio.read(pin)) {
@@ -54,9 +52,9 @@ class Sensor {
           // Cant believe it. The log function is bugged. LOL. Try un-commenting the first console.log of this function
           console.log(`Motor ${(this.distance < 18) ? 'stopped' : 'running'}. Distance: ${this.distance}`);
         }
-    });
+    }, Rpio.POLL_HIGH);
 
-    // this.trigger();
+    this.trigger();
   }
 
 
