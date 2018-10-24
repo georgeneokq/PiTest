@@ -18,7 +18,7 @@ class Sensor {
     Rpio.open(triggerPin, Rpio.OUTPUT);
     Rpio.open(echoPin, Rpio.INPUT, Rpio.PULL_DOWN);
 
-    let startTime = Microtime.now();
+    let startTime;
     let endTime;
 
     // In case sound trigger doesnt return, set trigger high again (?)
@@ -59,6 +59,7 @@ class Sensor {
 
     let timeout = setTimeout(_ => {
         this.trigger();
+        startTime = Microtime.now();
     }, 1000);
   }
 
