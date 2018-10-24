@@ -21,12 +21,6 @@ class Sensor {
     let startTime;
     let endTime;
 
-    // In case sound trigger doesnt return, set trigger high again (?)
-    // let interval = setInterval(() => {
-    //   this.trigger();
-    //   startTime = Microtime.now();
-    // }, 1000);
-
     /*
      * Poll for changes
      */
@@ -35,29 +29,26 @@ class Sensor {
       // Un-commenting this introduces a new bug
       // console.log('polling');
   
-        // Echo has returned, elapsed time can be used to calculate distance
-        endTime = Microtime.now(); 
+      // Echo has returned, elapsed time can be used to calculate distance
+      endTime = Microtime.now(); 
 
-        // Calculate distance based on speed of sound
-        const elapsed = endTime - startTime; // Time in milliseconds
+      // Calculate distance based on speed of sound
+      const elapsed = endTime - startTime; // Time in milliseconds
         
-        this.distance = this.calcDistance(elapsed);
+      this.distance = this.calcDistance(elapsed);
         
-        // Restart the startTime
-        startTime = Microtime.now();
+      // Restart the startTime
+      startTime = Microtime.now();
         
-        // Emit an event to notify that distance has changed
-        this.eventEmitter.emit('distancechanged');
+      // Emit an event to notify that distance has changed
+      this.eventEmitter.emit('distancechanged');
         
-        // Send new signal
-        // this.trigger();
-        
-        // Cant believe it. The log function is bugged. LOL. Try un-commenting the first console.log of this function
-        console.log(`Motor ${(this.distance < 18) ? 'stopped' : 'running'}. Distance: ${this.distance}`);
+      // Cant believe it. The log function is bugged. LOL. Try un-commenting the first console.log of this function
+      console.log(`Motor ${(this.distance < 18) ? 'stopped' : 'running'}. Distance: ${this.distance}`);
         
     }, Rpio.POLL_HIGH);
 
-    let timeout = setTimeout(_ => {
+    let interval = setInterval(_ => {
         this.trigger();
         startTime = Microtime.now();
     }, 1000);
